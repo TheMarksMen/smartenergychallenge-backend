@@ -1,0 +1,25 @@
+input AddUserInput {
+    displayName: String
+    email: String!
+    photoURL: String
+    firstName: String!
+    lastName: String!
+}
+
+input EditUserInput {
+    id: ID!
+    displayName: String
+    email: String
+    photoURL: String
+    firstName: String
+    lastName: String
+    yearLevel: String
+}
+
+input AddSampleInput {
+    userID: ID!
+    time: DateTime!
+    peakVoltage: Float
+    RMSCurrent: Float
+    avgPower: Float 
+}

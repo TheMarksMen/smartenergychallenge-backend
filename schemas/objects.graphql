@@ -1,0 +1,20 @@
+type User {
+    id: ID!
+    displayName: String
+    email: String
+    emailVerified: String
+    photoURL: String
+    firstName: String
+    lastName: String
+    samples: [Sample]
+    created: DateTime
+    modified: DateTime
+}
+
+type Sample {
+    id: ID!
+    created: DateTime
+    peakVoltage: Float
+    RMSCurrent: Float
+    avgPower: Float
+}

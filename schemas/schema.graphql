@@ -1,0 +1,17 @@
+scalar DateTime
+
+type Query {
+    """
+    General
+    """
+    me: User
+    currentTime: DateTime
+
+    """
+    User/Admin
+    """
+    user(userID: ID!): User
+    users: [User]!
+
+    samples(userID: ID!): [Sample]
+}

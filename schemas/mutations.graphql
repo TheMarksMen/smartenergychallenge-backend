@@ -1,0 +1,6 @@
+type Mutation {
+    addUser(input: AddUserInput!): User
+    editUser(input: EditUserInput!): User
+
+    addSample(input: AddSampleInput!): Sample
+}

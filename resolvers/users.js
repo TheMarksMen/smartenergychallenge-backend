@@ -1,11 +1,4 @@
-import {
-    getUser,
-    getAllUsers,
-    addUser,
-    editUser,
-    addUserQuiz,
-    getQuiz,
-} from '../controllers'
+import { getUser, getAllUsers, addUser, editUser } from '../controllers'
 import { AuthenticationError } from 'apollo-server-express'
 import { AdminAuthenticationError } from '../utils/errors'
 import { addFirebaseUser, resetUserPasswordEmail } from '../utils/firebase'
@@ -13,39 +6,30 @@ import { addFirebaseUser, resetUserPasswordEmail } from '../utils/firebase'
 const resolvers = {
     Query: {
         user: async (parents, args, context) => {
-            if (!context.user) throw new AuthenticationError()
-            if (!context.user.admin) throw new AdminAuthenticationError()
+            //if (!context.user) throw new AuthenticationError()
+            //if (!context.user.admin) throw new AdminAuthenticationError()
 
             return await getUser(args.userID)
         },
         me: async (parents, args, context) => {
-            if (!context.user) throw new AuthenticationError()
+            //if (!context.user) throw new AuthenticationError()
+            //if (!context.user) return
 
-            if (!context.user) return
             return await getUser(context.user.uid)
         },
         users: async (parents, args, context) => {
-            if (!context.user) throw new AuthenticationError()
-            if (!context.user.admin) throw new AdminAuthenticationError()
+            //if (!context.user) throw new AuthenticationError()
+            //if (!context.user.admin) throw new AdminAuthenticationError()
 
             return await getAllUsers()
         },
     },
     Mutation: {
         addUser: async (parent, { input }, context) => {
-            if (!context.user) throw new AuthenticationError()
-            if (!context.user.admin) throw new AdminAuthenticationError()
+            //if (!context.user) throw new AuthenticationError()
+            //if (!context.user.admin) throw new AdminAuthenticationError()
 
-            const {
-                displayName,
-                email,
-                photoURL,
-                firstName,
-                lastName,
-                yearLevel,
-                role,
-                quizID,
-            } = input
+            const { displayName, email, photoURL, firstName, lastName } = input
 
             const {
                 uid: userID,
@@ -74,8 +58,8 @@ const resolvers = {
             return user
         },
         editUser: async (parent, { input }, context) => {
-            if (!context.user) throw new AuthenticationError()
-            if (!context.user.admin) throw new AdminAuthenticationError()
+            //if (!context.user) throw new AuthenticationError()
+            //if (!context.user.admin) throw new AdminAuthenticationError()
 
             const {
                 id,
@@ -89,28 +73,6 @@ const resolvers = {
 
             return await editUser(
                 id,
-                displayName,
-                email,
-                photoURL,
-                firstName,
-                lastName,
-                yearLevel,
-            )
-        },
-        editSelf: async (parent, { input }, context) => {
-            if (!context.user) throw new AuthenticationError()
-
-            const {
-                displayName,
-                email,
-                photoURL,
-                firstName,
-                lastName,
-                yearLevel,
-            } = input
-
-            return await editUser(
-                uid,
                 displayName,
                 email,
                 photoURL,

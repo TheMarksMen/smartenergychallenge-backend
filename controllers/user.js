@@ -64,7 +64,6 @@ const editUser = async (
     photoURL,
     firstName,
     lastName,
-    yearLevel,
 ) => {
     return await Fireo.runTransaction(async (t) => {
         const user = await User.collection.get({ id })
@@ -74,7 +73,6 @@ const editUser = async (
         user.photoURL = photoURL ? photoURL : user.photoURL
         user.firstName = firstName ? firstName : user.firstName
         user.lastName = lastName ? lastName : user.lastName
-        user.yearLevel = yearLevel ? yearLevel : user.yearLevel
         user.created = user.created.toDate()
         user.modified = new Date()
 

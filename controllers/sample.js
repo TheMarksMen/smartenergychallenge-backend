@@ -1,5 +1,5 @@
 import { sample } from 'lodash'
-import { Sample, User} from '../models'
+import { Sample, User } from '../models'
 
 const packSample = (sample) => {
     return {
@@ -8,15 +8,20 @@ const packSample = (sample) => {
         peakVoltage: sample.peakVoltage,
         RMSCurrent: sample.RMSCurrent,
         avgPower: sample.avgPower,
-        created: sample.created
+        created: sample.created,
     }
 }
 
 const packSamples = (sample) => sample.map(packSample)
 
-const getSampleKey = async (sampleKey) => {
+const getSample = async (sampleKey) => {
     const sample = await Sample.collection.get({ key: sampleKey })
     return packSample(sample)
+}
+
+const getSamples = async (userID) => {
+    const samples = (await Sample.collection.fetch()).list
+    return packSamples(samples)
 }
 
 const addSample = async (s, user) => {
@@ -28,9 +33,7 @@ const addSample = async (s, user) => {
 
     await sample.save()
 
-    return await getSampleKey(sample.key)
+    return await getSample(sample.key)
 }
 
-export {
-    addSample
-}
+export { addSample, getSample, getSamples }

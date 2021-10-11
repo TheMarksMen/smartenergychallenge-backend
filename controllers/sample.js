@@ -24,7 +24,7 @@ const getSamples = async (userID) => {
     return packSamples(samples)
 }
 
-const addSample = async (s, user) => {
+const addSample = async (user, s) => {
     const sample = Sample.init({ parent: user.key })
 
     sample.peakVoltage = s.peakVoltage

@@ -4,10 +4,8 @@ import { AdminAuthenticationError } from '../utils/errors'
 
 const resolvers = {
     Query: {
-        samples: async (parent, { input }, context) => {
-            const { userID } = input
-
-            return await getSamples(userID)
+        samples: async (parent, args, context) => {
+            return await getSamples(args.userID)
         },
     },
     Mutation: {

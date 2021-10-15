@@ -13,10 +13,10 @@ const resolvers = {
             //if (!context.user) throw new AuthenticationError()
             //if (!context.user.admin) throw new AdminAuthenticationError()
 
-            const { userID, time, peakVoltage, RMSCurrent, avgPower } = input
+            const { userID, peakVoltage, RMSCurrent, avgPower } = input
 
             const user = await getUser(userID)
-            const sample = { time, peakVoltage, RMSCurrent, avgPower }
+            const sample = { peakVoltage, RMSCurrent, avgPower }
 
             return await addSample(user, sample)
         },

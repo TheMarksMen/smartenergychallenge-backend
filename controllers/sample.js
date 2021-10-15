@@ -27,6 +27,7 @@ const getSamples = async (userID) => {
 const addSample = async (user, s) => {
     const sample = Sample.init({ parent: user.key })
 
+    sample.created = new Date()
     sample.peakVoltage = s.peakVoltage
     sample.RMSCurrent = s.RMSCurrent
     sample.avgPower = s.avgPower

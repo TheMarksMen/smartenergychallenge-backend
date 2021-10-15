@@ -18,8 +18,7 @@ input EditUserInput {
 
 input AddSampleInput {
     userID: ID!
-    time: DateTime!
     peakVoltage: Float
     RMSCurrent: Float
-    avgPower: Float 
+    avgPower: Float
 }

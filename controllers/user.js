@@ -36,8 +36,6 @@ const addUser = async (
     photoURL,
     firstName,
     lastName,
-    yearLevel,
-    role,
 ) => {
     const user = User.init()
 
@@ -47,8 +45,6 @@ const addUser = async (
     user.photoURL = photoURL
     user.firstName = firstName
     user.lastName = lastName
-    user.yearLevel = yearLevel
-    user.role = role
     user.created = new Date()
     user.modified = new Date()
 

@@ -1,5 +1,6 @@
 import { sample } from 'lodash'
 import { Sample, User } from '../models'
+import { getUser } from './user'
 
 const packSample = (sample) => {
     return {
@@ -20,7 +21,8 @@ const getSample = async (sampleKey) => {
 }
 
 const getSamples = async (userID) => {
-    const samples = (await Sample.collection.fetch()).list
+    const user = await getUser(userID)
+    const samples = (await Sample.collection.parent(user.key).fetch()).list
     return packSamples(samples)
 }
 
